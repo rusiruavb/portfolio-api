@@ -1,9 +1,10 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
+import express, { Express, Request, Response, NextFunction } from 'express';
 import config from 'config';
 import log from './log'
 import dbConnect from './db/database';
+import routes from './routes';
 
-const app: Application = express();
+const app: Express = express();
 const PORT: Number = config.get('dev.port') as Number || config.get('production.port') as Number;
 
 app.use(express.json());
@@ -17,4 +18,5 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 app.listen(PORT, () => {
   log.info(`API server up and running on PORT ${PORT}`);
   dbConnect();
+  routes(app);
 });
