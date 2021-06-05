@@ -10,7 +10,8 @@ export interface UserDocument extends Document {
   username: string,
   password: string,
   description: string,
-  token: string
+  token: string,
+  generateAuthToken(): string
 }
 
 const UserSchema: Schema = new Schema({
