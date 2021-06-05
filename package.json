@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/app.js",
-    "dev": "nodemon --config nodemon.json src/app.ts",
+    "dev": "nodemon app.ts",
     "build": "tsc -p ."
   },
   "author": "Rusiru Abhisheak",
@@ -30,6 +30,7 @@
     "@types/body-parser": "^1.19.0",
     "@types/config": "0.0.38",
     "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.12",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/lodash": "^4.14.170",

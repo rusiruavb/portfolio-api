@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
-import config from 'config';
 import log from '../log';
 
 function connect() {
-  const dbUri: string = config.get('dev.dbUri') as string || config.get('production.dbUri') as string;
+  const dbUri: string = process.env.MONGODB_URI as string;
 
   return mongoose.connect(dbUri, {
     useNewUrlParser: true,
-      useUnifiedTopology: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true
   })
   .then(() => {
     log.info('Database Synced');

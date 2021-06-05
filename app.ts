@@ -1,11 +1,12 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
-import config from 'config';
-import log from './log'
-import dbConnect from './db/database';
-import routes from './routes';
+import log from './src/log'
+import dbConnect from './src/db/database';
+import routes from './src/routes';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app: Express = express();
-const PORT: Number = config.get('dev.port') as Number || config.get('production.port') as Number;
+const PORT: String = process.env.PORT as string;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
