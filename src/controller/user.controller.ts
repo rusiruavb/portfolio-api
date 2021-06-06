@@ -45,7 +45,8 @@ async function getUserAccount(req: Request, res: Response, next: NextFunction) {
 async function getPublicUserAccount(req: Request, res: Response, next: NextFunction) {
   await getUserDetails()
   .then(data => {
-    res.status(200).send(data);
+    res.statusCode = 200;
+    res.send(data);
     next();
   })
   .catch(error => {
