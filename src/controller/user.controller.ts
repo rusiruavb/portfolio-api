@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { insertUser, getUserById, getUserDetails, updateUserbyId, checkUserByUsernameAndPassword } from '../../service/user.service';
-import log from '../../log/index';
+import { insertUser, getUserById, getUserDetails, updateUserbyId, checkUserByUsernameAndPassword } from '../service/user.service';
+import log from '../log/index';
 import { omit } from 'lodash';
 
 async function createUser(req: Request, res: Response, next: NextFunction) {
