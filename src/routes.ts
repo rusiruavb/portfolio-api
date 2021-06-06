@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { createUser, loginUser, getUserAccount, getPublicUserAccount, updateUser} from './controller/user.controller';
+import { createUser, loginUser, getUserAccount, getPublicUserAccount, updateUser} from './controller/user/user.controller';
 
 export default function (app: Express) {
   app.post('/user/create', createUser);
