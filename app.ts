@@ -3,6 +3,7 @@ import log from './src/log'
 import dbConnect from './src/db/database';
 import routes from './src/routes';
 import dotenv from 'dotenv';
+import https from 'https';
 
 dotenv.config();
 const app: Express = express();
@@ -15,6 +16,11 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.send('<b>Rusiru Abhisheak Portfolio API</b>');
   next();
 });
+
+setInterval(function() {
+  https.get(process.env.API_PRODUCTION as string);
+  log.info('Root service called');
+}, 30000)
 
 app.listen(PORT, () => {
   log.info(`API server up and running on PORT ${PORT}`);
