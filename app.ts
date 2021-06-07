@@ -20,7 +20,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 setInterval(function() {
   https.get(process.env.API_PRODUCTION as string);
   log.info('Root service called');
-}, 30000)
+}, 900000)
 
 app.listen(PORT, () => {
   log.info(`API server up and running on PORT ${PORT}`);
