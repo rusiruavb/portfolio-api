@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: /
+        working-directory: ./
       
     strategy:
       matrix:
