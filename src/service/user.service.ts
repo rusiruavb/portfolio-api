@@ -25,6 +25,7 @@ export const insertUser = async (input: DocumentDefinition<UserDocument>) => {
   try {
     const user = await User.create(input);
     const token = await user.generateAuthToken();
+    logger.info('User created successfully');
     return user
   } catch (error) {
     logger.error(error.message);
