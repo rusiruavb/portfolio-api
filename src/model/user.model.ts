@@ -2,16 +2,31 @@ import mongoose, { Document, Schema, HookNextFunction } from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+export interface SocialMedia {
+  name: string,
+  publicurl: string
+}
+
 export interface UserDocument extends Document {
-  firstname: string,
-  middlename: string,
-  lastname: string,
-  email: string,
-  username: string,
-  password: string,
-  description: string,
-  token: string,
-  generateAuthToken(): string
+  firstname: string;
+  middlename: string;
+  lastname: string;
+  email: string;
+  phonenumber1: string;
+  phonenumber2: string;
+  address1: string;
+  address2: string;
+  city: string;
+  province: string;
+  country: string;
+  username: string;
+  password: string;
+  imageurl: string;
+  description: string;
+  socialmedia: Array<SocialMedia>;
+  tags: Array<string>;
+  token: string;
+  generateAuthToken(): string;
 }
 
 const UserSchema: Schema = new Schema({
@@ -19,9 +34,19 @@ const UserSchema: Schema = new Schema({
   middlename: { type: String, required: false, trim: true },
   lastname: { type: String, required: true, trim: true },
   email: { type: String, required: true, trim: true },
+  phonenumber1: { type: String, required: true, trim: true },
+  phonenumber2: { type: String, required: false, trim: true },
+  address1: { type: String, required: true, trim: true },
+  address2: { type: String, required: true, trim: true },
+  city: { type: String, required: true, trim: true },
+  provice: { type: String, required: false, trim: true },
+  country: { type: String, required: true, trim: true },
   username: { type: String, required: true, trim: true, unique: true },
   password: { type: String, required: true, trim: true },
+  imageurl: { type: String, required: true, trim: true },
   description: { type: String, required: true, trim: true },
+  socialmedia: [{ name: { type: String, required: false, trim: true }, publicurl: { type: String, required: false, trim: true } }],
+  tags: [{ type: String, required: true, trim: true }],
   token: { type: String }
 }, {
   timestamps: true
