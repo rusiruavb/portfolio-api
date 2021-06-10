@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { insertUser, getUserById, getUserDetails, updateUserbyId, checkUserByUsernameAndPassword, getUserMediumPosts } from '../service/user.service';
+import { insertUser, getUserById, getUserDetails, updateUserbyId, checkUserByUsernameAndPassword } from '../service/user.service';
 import log from '../log/index';
 import { omit } from 'lodash';
 
@@ -69,30 +69,10 @@ async function updateUser(req: Request, res: Response, next: NextFunction) {
   });
 }
 
-async function getMediumPosts(req: Request, res: Response) {
-  // username should be passed like this - https://yourwebsite/user/medium?username=someusername
-  const {
-    username
-  } = req.query;
-  await getUserMediumPosts(username as string)
-    .then(data => {
-      res
-        .status(200)
-        .send(data)
-    })
-    .catch(error => {
-      log.error(error.message);
-      res
-        .status(409)
-        .send(error.message)
-    });
-}
-
 export {
   createUser,
   loginUser,
   getUserAccount,
   getPublicUserAccount,
-  updateUser,
-  getMediumPosts
+  updateUser
 };
