@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "dev": "nodemon app.ts",
     "build": "tsc -p .",
-    "test": "jest --forceExit --detectOpenHandles -c ./jest.unit.json",
+    "test": "jest --setupFiles dotenv/config --forceExit",
     "test:coverage": "jest --coverage -c ./jest.unit.json"
   },
   "author": "Rusiru Abhisheak",

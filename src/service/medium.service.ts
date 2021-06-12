@@ -21,6 +21,7 @@ interface BlogPage {
   title: string
   description: string
   webMaster: string
+  imageurl: string
 }
 
 export const getUserMediumPosts = async (): Promise<{blogPage: BlogPage, items: BlogPost[]}> => {
@@ -39,7 +40,16 @@ export const getUserMediumPosts = async (): Promise<{blogPage: BlogPage, items: 
   try {
     request = await parser.parseURL(MEDIUM_URL);
     if (request && request.items) {
+      const REGEX = /<figure>(.*?)<\/figure>/;
+      const IMG_SRC_REGEX = /<img[^>]+src\s*=\s*['"]([^'"]+)['"][^>]*>/;
+
       for (let item of request.items) {
+        let matchArray = REGEX.exec(item['content:encoded'].replace(/\"/g, `'`))
+        let imageUrl: string = '';
+        if (matchArray !== null) {
+          imageUrl = matchArray[1];
+        }
+        
         let blog = {
           title: item.title,
           author: item.creator,
@@ -47,8 +57,10 @@ export const getUserMediumPosts = async (): Promise<{blogPage: BlogPage, items: 
           categories: item.categories,
           description: item['content:encoded'].replace(/\"/g, `'`),
           id: item.guid,
-          published: item.pubDate
+          published: item.pubDate,
+          imageurl: imageUrl.match(IMG_SRC_REGEX)![1]
         }
+
         items.push(blog);
       }
     }
@@ -67,7 +79,8 @@ export const getUserMediumPosts = async (): Promise<{blogPage: BlogPage, items: 
     },
     title: request.title,
     description: request.description,
-    webMaster: request.webMaster
+    webMaster: request.webMaster,
+    imageurl: request.imageurl
   };
 
   return { blogPage, items };
