@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../model/user.model';
 import log from '../log/index';
 
-export default async function auth(req: Request, res: Response,  next: NextFunction) {
+export default async function auth(req: Request, res: Response,  next: NextFunction): Promise<void> {
   try {
     const token = req.header('Authorization');
     const decode = jwt.verify(token as string, 'portfoliosecret');
