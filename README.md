@@ -21,3 +21,11 @@ The source code of this applications is publically available. So, you can also a
 
 ### To See more documentation
 > Go to the `documentation` folder inside the project structure.
+
+## Run the application using Docker container
+#### How to set up and run the application
+1. Install **Docker** into your local computer.
+2. Pull the docker image using **docker pull rusiruavb/conference-api-docker:latest**
+3. Run **docker run -p 8045:9094 rusiruavb/portfolio-api:latest** command to create the docker container and run.
+4. Then the application will be exposed on port 8045.
+5. Navigate to your browser and copy/paste this link **http://localhost:8045/**
