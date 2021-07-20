@@ -1,6 +1,7 @@
 import { Express } from "express";
-import { createUser, loginUser, getUserAccount, getPublicUserAccount, updateUser} from './controller/user.controller';
+import { createUser, loginUser, getUserAccount, getPublicUserAccount, updateUser } from './controller/user.controller';
 import { updateGitHubProfile, updateRepositories, getGitHubProfile, getGitHubRepositories } from './controller/github.controller';
+import { getMediumPosts } from './controller/medium.controller';
 import auth from './middleware/auth.middleware';
 
 export default function (app: Express) {
@@ -13,4 +14,5 @@ export default function (app: Express) {
   app.put('/user/github/repos/update', auth, updateRepositories);
   app.get('/user/github/profile', getGitHubProfile);
   app.get('/user/github/repos', getGitHubRepositories);
+  app.get('/user/medium', getMediumPosts);
 }
